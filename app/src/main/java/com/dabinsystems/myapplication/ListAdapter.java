@@ -120,8 +120,4 @@ public class ListAdapter extends RecyclerView.Adapter {
         return holder;
     }
 
-//    public CableListItemBinding getBinding() {
-//        return binding;
-//    }
-
 }
