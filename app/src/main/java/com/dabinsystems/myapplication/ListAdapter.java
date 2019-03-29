@@ -22,9 +22,7 @@ public class ListAdapter extends RecyclerView.Adapter {
     private ArrayList<ListItemBinding> mHolderList;
     private Context mContext;
     private RecyclerView.ViewHolder holder;
-    private RelativeLayout mSelectedRelativeLayout;
-    private TextView mSelectedTextView;
-    private int mSelectedPos;
+    private int mSelectedPos = -1;
 
     public ListAdapter(ArrayList<ListData> CableInfoList, Context context) {
         this.mCableInfoList = CableInfoList;
@@ -62,7 +60,7 @@ public class ListAdapter extends RecyclerView.Adapter {
 
         if(!mHolderList.contains(listItemHolder)) mHolderList.add(listItemHolder.binding);
 
-        if(mSelectedRelativeLayout != null && position == mSelectedPos) {
+        if(mSelectedPos != -1 && position == mSelectedPos) {
 
             binding.parent.setBackgroundColor(Color.YELLOW);
             binding.parent.setTag("select");
@@ -85,8 +83,6 @@ public class ListAdapter extends RecyclerView.Adapter {
                     binding.parent.setBackgroundColor(Color.YELLOW);
                     binding.parent.setTag("select");
 
-                    mSelectedRelativeLayout = binding.parent;
-                    mSelectedTextView = binding.tvName;
                     mSelectedPos = position;
 
                     Log.d("selected", position + "");
@@ -96,6 +92,7 @@ public class ListAdapter extends RecyclerView.Adapter {
 
                     binding.parent.setBackgroundColor(Color.WHITE);
                     binding.parent.setTag("none");
+                    mSelectedPos = -1;
 
                 }
 
